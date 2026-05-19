@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Javier López López</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variables globales para gestionar los temas visuales */
+        :root {
+            --bg-body: #f4f7f6;
+            --bg-card: #ffffff;
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --primary-color: #2c3e50; /* Tu azul marino original */
+            --accent-color: #2b6cb0;
+            --border-color: #e2e8f0;
+            --header-text: #ffffff;
+        }
+
+        /* MODO OSCURO PREMIUM: Colores suaves, elegantes y de alto contraste pero relajados */
+        body.dark-mode {
+            --bg-body: #0b0f17;       /* Fondo de página negro azulado muy elegante */
+            --bg-card: #161f30;       /* Cajas de contenido ligeramente más claras */
+            --text-main: #f1f5f9;     /* Texto principal blanco roto (no daña la vista) */
+            --text-muted: #94a3b8;    /* Texto secundario gris claro legible */
+            --primary-color: #5a0c0c; /* ROJO VINOTINTO PROFESIONAL (Sustituye al rojo chillón) */
+            --accent-color: #f87171;   /* Toques de color suaves */
+            --border-color: #24324d;   /* Bordes y líneas divisorias integrados */
+            --header-text: #ffffff;   /* Texto del header en blanco sobre el fondo vino */
+        }
+
+        /* Estilos Base y Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        /* Encabezado Principal */
+        header {
+            background-color: var(--primary-color);
+            color: var(--header-text);
+            padding: 40px;
+            position: relative;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        header img {
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            object-fit: cover;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.95rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item svg {
+            fill: currentColor;
+            opacity: 0.8;
+        }
+
+        /* Botones de Control Flotantes */
+        .btn-modo-izq {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+        }
+        .btn-modo-izq:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .idiomas-selector-der {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .idiomas-selector-der span {
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            transition: transform 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .idiomas-selector-der span:hover {
+            transform: scale(1.1);
+        }
+
+        /* Estructura de Columnas Asimétrica */
+        .cv-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            transition: border-color 0.3s;
+        }
+
+        main {
+            padding: 40px;
+            border-right: 1px solid var(--border-color);
+            transition: border-color 0.3s;
+        }
+
+        aside {
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.01);
+        }
+
+        /* Estilos de Secciones y Textos */
+        h2 {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+            transition: color 0.3s, border-color 0.3s;
+        }
+        
+        /* En el modo claro, preferimos que los h2 usen el azul primario */
+        body:not(.dark-mode) h2 {
+            color: var(--primary-color);
+        }
+
+        p {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .timeline-item strong {
+            display: block;
+            font-size: 1.05rem;
+            color: var(--text-main);
+            margin-bottom: 2px;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 8px;
+            transition: color 0.3s;
+        }
+
+        .timeline-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Lista de Habilidades e Idiomas */
+        .skill-list li {
+            background: rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--text-main);
+            transition: background 0.3s, border-color 0.3s;
+        }
+        body.dark-mode .skill-list li {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Pie de página */
+        footer {
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: border-color 0.3s;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Diseño Adaptable (Responsive) para móviles */
+        @media (max-width: 768px) {
+            .cv-content {
+                grid-template-columns: 1fr;
+            }
+            main {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 30px 20px;
+            }
+            aside {
+                padding: 30px 20px;
+            }
+            header {
+                padding: 60px 20px 30px 20px;
+            }
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <button class="btn-modo-izq" onclick="toggleModo()" aria-label="Cambiar tema visual">🌙</button>
+
+            <div class="idiomas-selector-der">
+                <span onclick="cambiarIdioma('es')" title="Español">
+                    <svg viewBox="0 0 750 500" width="30" height="20" aria-hidden="true">
+                        <rect width="750" height="500" fill="#c60b1e"/>
+                        <rect width="750" height="250" y="125" fill="#fbe122"/>
+                    </svg>
+                </span>
+                <span onclick="cambiarIdioma('en')" title="English">
+                    <svg viewBox="0 0 60 30" width="30" height="20" aria-hidden="true">
+                        <clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+                        <path d="M0,0 v30 h60 v-30 z" fill="#012169" clip-path="url(#s)"/>
+                        <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6" clip-path="url(#s)"/>
+                        <path d="M0,0 L60,30 M60,0 L0,30" stroke="#c8102e" stroke-width="4" clip-path="url(#s)"/>
+                        <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10" clip-path="url(#s)"/>
+                        <path d="M30,0 v30 M0,15 h60" stroke="#c8102e" stroke-width="6" clip-path="url(#s)"/>
+                    </svg>
+                </span>
+                <span onclick="cambiarIdioma('fr')" title="Français">
+                    <svg viewBox="0 0 3 2" width="30" height="20" aria-hidden="true">
+                        <rect width="1" height="2" fill="#00209F"/>
+                        <rect width="1" height="2" x="1" fill="#FFF"/>
+                        <rect width="1" height="2" x="2" fill="#F42A41"/>
+                    </svg>
+                </span>
+            </div>
+
+            <div>
+                <img src="images/perfil.jpg" alt="Fotografía de Javier López López" width="130" height="130">
+                <h1>Javier López López</h1>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <svg width="14" height="14" viewBox="0 0 24 24"><path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.753-7.859-4.161-9.113.19-.092 1.748-.846 1.748-.846l-3.511-6.878s-1.701.826-1.895.919c-3.725 1.802-1.258 12.593 4.908 19.349 6.276 6.875 12.188 4.116 12.188 4.116l-1.693-1.763z"/></svg>
+                        <span data-es="Teléfono:" data-en="Phone:" data-fr="Téléphone:">Teléfono:</span> +34 692 58 11 57
+                    </div>
+                    <div class="contact-item">
+                        <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.971l-11.986 9.713zm-12.015-7.743v15.03h24v-15.03l-12 9.73-12-9.73z"/></svg>
+                        Email: loplopjavi20@gmail.com
+                    </div>
+                    <div class="contact-item">
+                        <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 0c-4.198 0-7.6 3.402-7.6 7.602 0 4.198 3.402 7.6 7.6 7.6s7.6-3.402 7.6-7.602c0-4.198-3.402-7.6-7.6-7.6zm0 11c-1.878 0-3.4-1.522-3.4-3.4s1.522-3.4 3.4-3.4 3.4 1.522 3.4 3.4-1.522 3.4-3.4 3.4zm0 5.125c-4.902 0-9 2.446-9 5.5v2.375h18v-2.375c0-3.054-4.098-5.5-9-5.5z"/></svg>
+                        <span data-es="Ubicación:" data-en="Location:" data-fr="Emplacement:">Ubicación:</span> Monturque, España
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="cv-content">
+            <main>
+                <section>
+                    <h2 data-es="Sobre mí" data-en="About me" data-fr="À propos de moi">Sobre mí</h2>
+                    <p data-es="Destaco por mi gran compañerismo y capacidad para trabajar en equipo, cualidades que combino con mi formación en desarrollo web. Estoy especializado en la creación de sitios con HTML5, CSS y WordPress, siempre enfocado en aprender nuevas tecnologías y resolver retos técnicos de forma eficiente." 
+                       data-en="I stand out for my great camaraderie and teamwork skills, qualities that I combine with my web development training. I specialize in creating sites with HTML5, CSS, and WordPress, always focused on learning new technologies and solving technical challenges efficiently." 
+                       data-fr="Je me distingue por mon grand esprit de camaraderie et ma capacité à travailler en équipe, des qualités que j'associe à ma formation en développement web. Je suis spécialisé dans la création de sites avec HTML5, CSS et WordPress, toujours axé sur l'apprentissage de nouvelles technologies et la résolution efficace de défis techniques.">
+                       Destaco por mi gran compañerismo y capacidad para trabajar en equipo, cualidades que combino con mi formación en desarrollo web. Estoy especializado en la creación de sitios con HTML5, CSS y WordPress, siempre enfocado en aprender nuevas tecnologías y resolver retos técnicos de forma eficiente.
+                    </p>
+
+                    <h2 data-es="Experiencia Laboral" data-en="Work Experience" data-fr="Expérience Professionnelle">Experiencia Laboral</h2>
+                    <ul>
+                        <li class="timeline-item">
+                            <strong data-es="Desarrollador Web / Prácticas" data-en="Web Developer / Internship" data-fr="Développeur Web / Stage">Desarrollador Web / Prácticas</strong>
+                            <span class="timeline-date">UCO Digital (04/03/26 - 27/05/26)</span>
+                            <p data-es="Desarrollo y mantenimiento de portales académicos, gestión de contenidos en WordPress y personalización de estilos mediante CSS." 
+                               data-en="Development and maintenance of academic portals, content management in WordPress, and style customization using CSS." 
+                               data-fr="Développement et maintenance de portales académiques, gestion de contenu sur WordPress y personnalisation des styles via CSS.">
+                               Desarrollo y mantenimiento de portales académicos, gestión de contenidos en WordPress y personalización de estilos mediante CSS.
+                            </p>
+                        </li>
+                        <li class="timeline-item">
+                            <strong data-es="Auxiliar Técnico" data-en="Technical Assistant" data-fr="Assistant Technique">Auxiliar Técnico</strong>
+                            <span class="timeline-date">C.E.I.P Torre del Castillo (01/03/25 - 22/06/25)</span>
+                            <p data-es="Apoyo en la gestión de recursos digitales y mantenimiento básico de sistemas informáticos del centro." 
+                               data-en="Support in the management of digital resources and basic maintenance of the center's computer systems." 
+                               data-fr="Soutien dans la gestion des ressources numériques et maintenance de base des systèmes informatiques du centre.">
+                               Apoyo en la gestión de recursos digitales y mantenimiento básico de sistemas informáticos del centro.
+                            </p>
+                        </li>
+                    </ul>
+
+                    <h2 data-es="Formación Académica" data-en="Education" data-fr="Formation Académique">Formación Académica</h2>
+                    <ul>
+                        <li class="timeline-item">
+                            <strong data-es="C.F.G.S. Desarrollo de Aplicaciones Web (En curso)" data-en="HND in Web Applications Development (In progress)" data-fr="B.T.S. Développeur d'Applications Web (En cours)">C.F.G.S. Desarrollo de Aplicaciones Web (En curso)</strong>
+                            <span class="timeline-date">I.E.S. Gran Capitán — <span data-es="Finalización prevista:" data-en="Expected completion:" data-fr="Fin prévue:">Finalización prevista:</span> 2027</span>
+                            <p data-es="Actualmente cursando el primer año, enfocado en lenguajes de marcas, programación y bases de datos." 
+                               data-en="Currently in my first year, focusing on markup languages, programming, and databases." 
+                               data-fr="Actuellement en première année, axé sur les langages de balisage, la programmation et les bases de données.">
+                               Actualmente cursando el primer año, enfocado en lenguajes de marcas, programación y bases de datos.
+                            </p>
+                        </li>
+                        <li class="timeline-item">
+                            <strong data-es="C.F.G.M. Sistemas Microinformáticos y Redes" data-en="VET in Microcomputer Systems and Networks" data-fr="C.A.P. Systèmes Microinformatiques et Réseaux">C.F.G.M. Sistemas Microinformáticos y Redes</strong>
+                            <span class="timeline-date">I.E.S. Vicente Núñez</span>
+                        </li>
+                        <li class="timeline-item">
+                            <strong data-es="Educación Secundaria Obligatoria (ESO)" data-en="Compulsory Secondary Education (ESO)" data-fr="Enseignement Secondaire Obligatoire (ESO)">Educación Secundaria Obligatoria (ESO)</strong>
+                            <span class="timeline-date">I.E.S Las Viñas</span>
+                        </li>
+                    </ul>
+                </section>
+            </main>
+
+            <aside>
+                <h2 data-es="Habilidades" data-en="Skills" data-fr="Compétences">Habilidades</h2>
+                <ul class="skill-list">
+                    <li>HTML5 / CSS3</li>
+                    <li>WordPress</li>
+                    <li>GitHub / <span data-es="Control de versiones" data-en="Version Control" data-fr="Contrôle de Version">Control de versiones</span></li>
+                    <li>WampServer / <span data-es="Gestión local" data-en="Local Management" data-fr="Gestion Locale">Gestión local</span></li>
+                    <li data-es="Trabajo en equipo" data-en="Teamwork" data-fr="Travail d'équipe">Trabajo en equipo</li>
+                </ul>
+
+                <h2 data-es="Idiomas" data-en="Languages" data-fr="Langues">Idiomas</h2>
+                <ul class="skill-list">
+                    <li><span data-es="Español: Nativo" data-en="Spanish: Native" data-fr="Espagnol: Maternelle">Español: Nativo</span></li>
+                    <li><span data-es="Inglés: B1 - Intermedio" data-en="English: B1 - Intermediate" data-fr="Anglais: B1 - Intermédiaire">Inglés: B1 - Intermedio</span></li>
+                    <li><span data-es="Francés: B1 - Intermedio" data-en="French: B1 - Intermediate" data-fr="Français: B1 - Intermédiaire">Francés: B1 - Intermedio</span></li>
+                </ul>
+            </aside>
+        </div>
+
+        <footer>
+            <div>
+                <p style="margin-bottom: 5px;" data-es="Conecta conmigo:" data-en="Connect with me:" data-fr="Contactez-moi:">Conecta conmigo:</p>
+                <a href="https://www.linkedin.com/in/tu-usuario" target="_blank">LinkedIn</a> | 
+                <a href="https://github.com/tu-usuario" target="_blank">GitHub</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function cambiarIdioma(idioma) {
+            document.documentElement.lang = idioma;
+            const elementos = document.querySelectorAll(`[data-${idioma}]`);
+            elementos.forEach(el => {
+                el.textContent = el.getAttribute(`data-${idioma}`);
+            });
+        }
+
+        function toggleModo() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            
+            const boton = document.querySelector('.btn-modo-izq');
+            if(body.classList.contains('dark-mode')) {
+                boton.textContent = '☀️';
+                boton.setAttribute('aria-label', 'Cambiar a modo claro');
+            } else {
+                boton.textContent = '🌙';
+                boton.setAttribute('aria-label', 'Cambiar a modo oscuro');
+            }
+        }
+    </script>
+</body>
+</html>
